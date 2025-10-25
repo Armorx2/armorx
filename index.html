@@ -3,198 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أول بوت حماية سعودي مجاني!</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>الخدمات العامة لوزارة العدل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07142a;
-  --accent:#0f5aa6;
-  --card:#0b2945;
-  --text:#eaf2ff;
-  --muted: rgba(234,242,255,0.7);
+  --accent:#00400a;
 }
 *{box-sizing:border-box;}
 body{
   margin:0;
-  font-family:'Cairo', sans-serif;
-  background: linear-gradient(180deg, var(--bg) 0%, #041229 100%);
-  color:var(--text);
+  font-family:'Cairo',sans-serif;
+  background:var(--accent);
   min-height:100vh;
+  color:#fff;
 }
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 26px;
-  position:fixed;
-  top:0;
-  width:100%;
-  backdrop-filter: blur(6px);
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-bottom:1px solid rgba(255,255,255,0.03);
-  z-index:10;
-}
-.brand h2{
-  margin:0;
-  font-size:18px;
-  margin-right:80px; /* حركناه شوي يسار عن الهامبرغر */
-}
-.hamburger-container{
-  position:absolute;
-  top:18px;
-  right:26px; /* أقصى اليمين */
-}
-.hamburger{
-  width:46px;height:46px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
-  background:var(--card);border:1px solid rgba(255,255,255,0.03);
-}
-.hamburger .lines{width:20px;height:14px;position:relative;}
-.hamburger .lines span{
-  position:absolute;left:0;right:0;height:2px;background:var(--text);
-  border-radius:2px;
-}
-.hamburger .lines span:nth-child(1){top:0}
-.hamburger .lines span:nth-child(2){top:6px}
-.hamburger .lines span:nth-child(3){top:12px}
-.menu{
-  position:absolute;
-  top:100%;
-  right:0;
-  width:220px;
-  border-radius:10px;
-  overflow:hidden;
-  background: linear-gradient(180deg, rgba(9,24,42,0.95), rgba(6,16,30,0.95));
-  box-shadow: 0 10px 30px rgba(3,10,24,0.6);
-  transform-origin: top right;
-  opacity:0;
-  transform: scale(.95);
-  pointer-events:none;
-  transition: all .18s ease;
-  display:flex;
-  flex-direction:column;
-}
-.menu.open{
-  opacity:1;
-  transform:scale(1);
-  pointer-events:auto;
-}
-.menu a{
-  display:block;padding:12px 16px;text-decoration:none;color:var(--text);
-  font-weight:600;border-bottom:1px solid rgba(255,255,255,0.02);
-}
-.menu a:last-child{border-bottom:none}
-
-.crown{
-  display:inline-block;
-  width:18px;
-  height:18px;
-  margin-left:6px;
-  background: linear-gradient(45deg, gold, orange);
-  clip-path: polygon(50% 0%, 65% 40%, 100% 40%, 75% 65%, 85% 100%, 50% 80%, 15% 100%, 25% 65%, 0% 40%, 35% 40%);
-}
-
-main{
-  padding:120px 26px 50px 26px;
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  align-items:center;
-  gap:20px;
-}
-section{
-  display:none;
-  width:100%;
-  max-width:700px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  padding:28px;
-  border-radius:14px;
+.container{
+  background:rgba(0,0,0,0.4);
+  padding:30px;
+  border-radius:12px;
+  width:90%;
+  max-width:600px;
+  margin:60px auto;
   text-align:center;
-  box-shadow:0 18px 40px rgba(4,12,30,0.6);
 }
-section.active{display:flex;flex-direction:column;align-items:center;gap:20px;}
-h1{margin:0 0 14px 0;font-size:28px;}
-p{margin:0 0 12px 0;line-height:1.6;color:var(--muted)}
+h1{margin-bottom:30px;}
+input,textarea,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0 15px 0;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+}
 button{
-  padding:14px 20px;border:none;border-radius:12px;
-  background:linear-gradient(90deg,var(--accent),#0b63a1);
-  color:white;font-weight:700;font-size:16px;
-  cursor:pointer;box-shadow:0 14px 34px rgba(11,92,162,0.16);margin-top:14px;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  font-size:17px;
+  cursor:pointer;
 }
 button:hover{opacity:0.9;}
+.hidden{display:none;}
+.buttons button{width:100%;margin-bottom:10px;}
+label{display:block;text-align:right;margin-bottom:5px;font-weight:600;}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="brand"><h2>أول بوت حماية سعودي مجاني!</h2></div>
-  <div class="hamburger-container">
-    <div class="hamburger" id="hamb">
-      <div class="lines" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <nav class="menu" id="menu">
-      <a data-target="home">الصفحة الرئيسية</a>
-      <a data-target="addBot">إضافة البوت</a>
-      <a data-target="info">معلومات</a>
-      <a data-target="premium"><span class="crown"></span> بروميوم</a>
-    </nav>
+<div class="container" id="page1">
+  <h1>الخدمات العامة لوزارة العدل</h1>
+  <label>الاسم الثلاثي:</label>
+  <input id="name">
+  <label>العمر:</label>
+  <input id="age" type="number">
+  <button onclick="goToServices()">تسجيل</button>
+</div>
+
+<div class="container hidden" id="services">
+  <h1>الخدمات</h1>
+  <div class="buttons">
+    <button onclick="openForm('case')">رفع قضية</button>
+    <button onclick="openForm('record')">طلب ازالة سوابق</button>
+    <button onclick="openForm('lawyer')">طلب محامي</button>
+    <button onclick="openForm('general')">الخدمات العامة والاستفسارات</button>
   </div>
-</header>
+</div>
 
-<main>
-  <section id="home" class="active">
-    <h1>أول بوت حماية سعودي مجاني!</h1>
-    <p>هذا البوت مصمم ليحمي سيرفرك من السبام، الروابط الضارة، البوتات المخربة، والمشاكل الشائعة. سهل التثبيت، سريع، ويجي معه إعدادات جاهزة تناسب السيرفر السعودي. يشتغل مع صلاحيات قوية وآمنة، وممدوح من المستخدمين — خفيف على السيرفر وما يأثر على الأداء.</p>
-  </section>
+<!-- رفع قضية -->
+<div class="container hidden" id="case">
+  <h1>رفع قضية</h1>
+  <label>اسم المدعي عليه:</label>
+  <input id="caseDefendant">
+  <label>سبب القضية:</label>
+  <textarea id="caseReason"></textarea>
+  <label>قضية عامة أو خاصة:</label>
+  <select id="caseType">
+    <option value="عامة">عامة</option>
+    <option value="خاصة">خاصة</option>
+  </select>
+  <button onclick="sendCase()">ارسال</button>
+</div>
 
-  <section id="addBot">
-    <h1>إضافة البوت</h1>
-    <p>اضغط الزر أدناه لإضافة بوت الحماية لسيرفرك:</p>
-    <button onclick="window.open('https://discord.com/oauth2/authorize?client_id=1429193555775328306&permissions=8&integration_type=0&scope=bot','_blank')">إضافة البوت الآن</button>
-  </section>
+<!-- ازالة سوابق -->
+<div class="container hidden" id="record">
+  <h1>طلب ازالة سوابق</h1>
+  <label>لماذا سجلت عليك سابقة؟</label>
+  <textarea id="recordReason"></textarea>
+  <label>كم مر على تسجيل السابقة؟</label>
+  <input id="recordTime">
+  <label style="float:right;font-size:13px;">اضف الدليل هنا</label>
+  <input id="recordProof" placeholder="رابط الدليل (صورة أو ملف)">
+  <button onclick="sendRecord()">ارسال</button>
+</div>
 
-  <section id="info">
-    <h1>معلومات</h1>
-    <p><strong>حماية قوية:</strong> البوت صُمم ليحمي سيرفرك من جميع المخاطر: السبام، الروابط الضارة، البوتات المخربة، وأكثر.</p>
-    <p><strong>جهد كبير:</strong> عملنا على تطوير هذا البوت بعناية، مع تحديثات دورية لضمان أعلى مستوى أمان وأداء ممتاز.</p>
-    <p><strong>ميزات مميزة:</strong> سهل التثبيت، سريع، خفيف على السيرفر، مع إعدادات جاهزة تناسب المجتمع السعودي، ومدعوم من المستخدمين.</p>
-    <p><strong>موثوق وآمن:</strong> صلاحيات قوية وآمنة، وواجهة بسيطة، وكل شيء مرتب لضمان أفضل تجربة.</p>
-  </section>
+<!-- طلب محامي -->
+<div class="container hidden" id="lawyer">
+  <h1>طلب محامي</h1>
+  <label>لماذا تريد طلب محامي؟</label>
+  <textarea id="lawyerWhy"></textarea>
+  <label>ماهو سبب القضية؟</label>
+  <textarea id="lawyerReason"></textarea>
+  <label>قضية عامة أو خاصة؟</label>
+  <select id="lawyerType">
+    <option value="عامة">عامة</option>
+    <option value="خاصة">خاصة</option>
+  </select>
+  <label>متى موعد القضية؟</label>
+  <input id="lawyerDate" type="text" placeholder="اكتب الموعد">
+  <button onclick="sendLawyer()">ارسال</button>
+</div>
 
-  <section id="premium">
-    <h1>مميزات البوت بروميوم (VIP)</h1>
-    <p><strong>1. حماية متقدمة:</strong> يحتوي على نظام أمني مطور ضد التخريب والسبام، مع كشف فوري لأي محاولة تهكير أو تعديل مشبوه.</p>
-    <p><strong>2. سجل النشاط الكامل:</strong> يسجل جميع الأحداث الإدارية مثل الطرد، البان، تعديل الرولات والقنوات، مع إمكانية تصدير السجل عند الحاجة.</p>
-    <p><strong>3. أداء واستقرار أعلى:</strong> يعمل على خادم خاص بسرعة واستجابة عالية، مما يضمن حماية فعالة دون توقف.</p>
-    <p><strong>4. دعم فني خاص:</strong> يحصل السيرفر على أولوية في الدعم الفني والتحديثات المستمرة والمميزات الجديدة أولاً.</p>
-  </section>
-</main>
+<!-- الخدمات العامة -->
+<div class="container hidden" id="general">
+  <h1>الخدمات العامة والاستفسارات</h1>
+  <button onclick="openForm('namechange')">تغيير الاسم</button>
+  <button onclick="openForm('idrequest')">طلب اخراج هوية</button>
+</div>
+
+<!-- تغيير الاسم -->
+<div class="container hidden" id="namechange">
+  <h1>تغيير الاسم</h1>
+  <label>الاسم السابق:</label>
+  <input id="oldName">
+  <label>الاسم الجديد:</label>
+  <input id="newName">
+  <button onclick="sendNameChange()">ارسال</button>
+</div>
+
+<!-- اخراج هوية -->
+<div class="container hidden" id="idrequest">
+  <h1>طلب اخراج هوية</h1>
+  <label>اسمك:</label>
+  <input id="idName">
+  <label>عمرك:</label>
+  <input id="idAge" type="number">
+  <label>لماذا تريد اخراج هوية؟</label>
+  <textarea id="idReason"></textarea>
+  <label>هل تعديت العمر القانوني؟</label>
+  <select id="idLegal">
+    <option value="نعم">نعم</option>
+    <option value="لا">لا</option>
+  </select>
+  <button onclick="sendID()">ارسال</button>
+</div>
 
 <script>
-const hamb = document.getElementById('hamb');
-const menu = document.getElementById('menu');
-const links = menu.querySelectorAll('a');
-const sections = document.querySelectorAll('section');
+let userName="", userAge="";
+const webhook="https://discord.com/api/webhooks/1431439156546109551/oRRrqwfucjxM1ebOQ-7dcwz8ZlsRT5bqH_IEQEORM5cTf8wWafOnriZ41nTMc_zTbWEy";
 
-hamb.addEventListener('click',()=>{menu.classList.toggle('open');});
-document.addEventListener('click',(e)=>{
-  if(!hamb.contains(e.target)&&!menu.contains(e.target)){
-    menu.classList.remove('open');
-  }
-});
-
-links.forEach(link=>{
-  link.addEventListener('click',()=>{
-    const target = link.getAttribute('data-target');
-    sections.forEach(sec=>sec.classList.remove('active'));
-    document.getElementById(target).classList.add('active');
-    menu.classList.remove('open');
-    window.scrollTo(0,0);
+function goToServices(){
+  userName=document.getElementById('name').value.trim();
+  userAge=document.getElementById('age').value.trim();
+  if(!userName||!userAge){alert("يرجى إدخال الاسم والعمر");return;}
+  showPage('services');
+}
+function openForm(id){showPage(id);}
+function showPage(id){
+  document.querySelectorAll('.container').forEach(c=>c.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+function sendToDiscord(content){
+  fetch(webhook,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({content:content})
   });
-});
+  alert("تم الإرسال بنجاح ✅");
+  showPage('services');
+}
+// رفع قضية
+function sendCase(){
+  let def=document.getElementById('caseDefendant').value.trim();
+  let reason=document.getElementById('caseReason').value.trim();
+  let type=document.getElementById('caseType').value;
+  let msg=`الاسم: ${userName}\nالعمر: ${userAge}\nاسم المدعي عليه: ${def}\nسبب القضية: ${reason}\nنوع الطلب: رفع قضية\nنوع القضية: ${type}`;
+  sendToDiscord(msg);
+}
+// ازالة سوابق
+function sendRecord(){
+  let reason=document.getElementById('recordReason').value.trim();
+  let time=document.getElementById('recordTime').value.trim();
+  let proof=document.getElementById('recordProof').value.trim();
+  let msg=`الاسم: ${userName}\nالعمر: ${userAge}\nنوع الطلب: طلب ازالة سوابق\nلماذا سجلت عليك سابقة: ${reason}\nكم مر على تسجيل السابقة: ${time}\nالدليل: ${proof}`;
+  sendToDiscord(msg);
+}
+// طلب محامي
+function sendLawyer(){
+  let why=document.getElementById('lawyerWhy').value.trim();
+  let reason=document.getElementById('lawyerReason').value.trim();
+  let type=document.getElementById('lawyerType').value;
+  let date=document.getElementById('lawyerDate').value.trim();
+  let msg=`الاسم: ${userName}\nالعمر: ${userAge}\nنوع الطلب: طلب محامي\nلماذا تريد طلب محامي: ${why}\nسبب القضية: ${reason}\nقضية: ${type}\nموعد القضية: ${date}`;
+  sendToDiscord(msg);
+}
+// تغيير الاسم
+function sendNameChange(){
+  let oldN=document.getElementById('oldName').value.trim();
+  let newN=document.getElementById('newName').value.trim();
+  let msg=`الاسم: ${userName}\nالعمر: ${userAge}\nنوع الطلب: تغيير الاسم\nالاسم السابق: ${oldN}\nالاسم الجديد: ${newN}`;
+  sendToDiscord(msg);
+}
+// اخراج هوية
+function sendID(){
+  let n=document.getElementById('idName').value.trim();
+  let a=document.getElementById('idAge').value.trim();
+  let reason=document.getElementById('idReason').value.trim();
+  let legal=document.getElementById('idLegal').value;
+  let msg=`الاسم: ${n}\nالعمر: ${a}\nنوع الطلب: طلب اخراج هوية\nالسبب: ${reason}\nتعدى العمر القانوني: ${legal}`;
+  sendToDiscord(msg);
+}
 </script>
-
 </body>
 </html>
