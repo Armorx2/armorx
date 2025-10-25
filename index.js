@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent:#00400a;
+  --accent:#002408;
 }
 *{box-sizing:border-box;}
 body{
